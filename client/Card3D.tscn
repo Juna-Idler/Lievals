@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://py0jmpntgjmo"]
+
+[ext_resource type="Script" path="res://client/Card3D.gd" id="1_tj7n0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_odedr"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_htspw"]
+size = Vector2(0.8, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0p87"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_toij1"]
+material = SubResource("StandardMaterial3D_y0p87")
+size = Vector2(0.8, 1.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nel62"]
+size = Vector3(0.8, 1.2, 0.01)
+
+[node name="Card3d" type="Node3D"]
+script = ExtResource("1_tj7n0")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Front" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_odedr")
+mesh = SubResource("QuadMesh_htspw")
+
+[node name="Back" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_toij1")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_nel62")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]

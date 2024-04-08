@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://djgkn8eph0ns8"]
+
+[ext_resource type="PackedScene" uid="uid://dx3nwt3i78ju7" path="res://client/square.tscn" id="1_qjq4o"]
+[ext_resource type="Script" path="res://client/field.gd" id="1_ridun"]
+[ext_resource type="PackedScene" uid="uid://dluyiccv3nkns" path="res://client/selected_square.tscn" id="3_go2rm"]
+
+[node name="Field" type="Node3D"]
+script = ExtResource("1_ridun")
+
+[node name="Own" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="Square0" parent="Own" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 0, 0)
+
+[node name="Square1" parent="Own" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -1)
+
+[node name="Square2" parent="Own" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="Square3" parent="Own" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 1)
+
+[node name="Square4" parent="Own" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -1)
+
+[node name="Square5" parent="Own" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+
+[node name="Square6" parent="Own" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 1)
+
+[node name="Rival" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="Square0" parent="Rival" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 0, 0)
+
+[node name="Square1" parent="Rival" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -1)
+
+[node name="Square2" parent="Rival" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="Square3" parent="Rival" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 1)
+
+[node name="Square4" parent="Rival" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -1)
+
+[node name="Square5" parent="Rival" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+
+[node name="Square6" parent="Rival" instance=ExtResource("1_qjq4o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1)
+
+[node name="SelectedSquare" parent="." instance=ExtResource("3_go2rm")]
+visible = false
