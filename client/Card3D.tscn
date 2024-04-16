@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://py0jmpntgjmo"]
 
-[ext_resource type="Script" path="res://client/Card3D.gd" id="1_tj7n0"]
+[ext_resource type="Script" path="res://client/card3d.gd" id="1_l2efo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_odedr"]
 
@@ -18,7 +18,7 @@ size = Vector2(0.8, 1.2)
 size = Vector3(0.8, 1.2, 0.01)
 
 [node name="Card3d" type="Node3D"]
-script = ExtResource("1_tj7n0")
+script = ExtResource("1_l2efo")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 
