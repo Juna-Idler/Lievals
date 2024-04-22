@@ -1,5 +1,8 @@
 extends Node
 
+const MULLIGAN = preload("res://client/mulligan.tscn")
+const CARD_3D = preload("res://client/card3d.tscn")
+
 @onready var hand : PlayerHand = %Hand
 @onready var field : Field = $Node3D/Field
 
@@ -9,17 +12,40 @@ extends Node
 
 var drag_plane : Plane = Plane(Vector3(0,1,0),0.5)
 
+var server : ServerInterface
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_drag_tween = create_tween()
 	_drag_tween.kill()
-	for h in hand.hands:
-		h.input_event.connect(on_hand_card_input_event)
-		h.mouse_entered.connect(on_hand_card_mouse_entered)
-		h.mouse_exited.connect(on_hand_card_mouse_exited)
+	hand.hand_card_input_event.connect(on_hand_card_input_event)
+	hand.hand_card_mouse_entered.connect(on_hand_card_mouse_entered)
+	hand.hand_card_mouse_exited.connect(on_hand_card_mouse_exited)
 	field.set_attack()
 	pass # Replace with function body.
+
+func start_async(server_interface : ServerInterface):
+	server = server_interface
+#	var mdata := server.get_matching_data()
+#	var fdata := await server.send_ready_async()
+#	if not fdata:
+#		return
+	hand.hide()
+	var mulligan : Mulligan = MULLIGAN.instantiate()
+	hud.add_child(mulligan)
+	var cards : Array[Card3D] = []
+	for i in 3:
+		cards.append(CARD_3D.instantiate())
+	
+	await mulligan.start_async(true,cards,0.5)
+	
+	var list := await mulligan.wait_async()
+#	var result := await server.send_mulligan_async(list)
+	await mulligan.end_async()
+	hand.show()
+	hand.set_cards(cards,0.5)
+	mulligan.queue_free()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

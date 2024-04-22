@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwffi48tefa1x"]
+
+[ext_resource type="Texture2D" uid="uid://cwptq01d1nkyq" path="res://recycle.svg" id="1_2bdfm"]
+
+[node name="Exchange" type="TextureRect"]
+offset_right = 224.0
+offset_bottom = 224.0
+texture = ExtResource("1_2bdfm")
+expand_mode = 1
+stretch_mode = 5

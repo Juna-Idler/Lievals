@@ -21,4 +21,5 @@ hands = [null, null, null, null, null, null, null, null, null, null, null]
 curve = SubResource("Curve3D_5ouq5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("QuadMesh_i270i")

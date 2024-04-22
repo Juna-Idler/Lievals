@@ -20,7 +20,7 @@ func send_ready_async() -> FirstData:
 	@warning_ignore("redundant_await")
 	return await null
 
-func send_mulligan_async(_list) -> Result:
+func send_mulligan_async(_index_list : Array[int]) -> Result:
 	@warning_ignore("redundant_await")
 	return await null
 

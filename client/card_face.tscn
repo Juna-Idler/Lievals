@@ -1,0 +1,161 @@
+[gd_scene load_steps=9 format=3 uid="uid://2q0jumnrxatb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_02e3w"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uxl36"]
+noise = SubResource("FastNoiseLite_02e3w")
+
+[sub_resource type="LabelSettings" id="LabelSettings_0eu54"]
+font_size = 96
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dh0y"]
+bg_color = Color(0.658824, 0.658824, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bynux"]
+font_size = 40
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1nkry"]
+bg_color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_miip6"]
+bg_color = Color(0.6, 0.6, 0.627451, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sbvvc"]
+font_size = 28
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -640.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 480.0
+offset_bottom = 400.0
+texture = SubResource("NoiseTexture2D_uxl36")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(80, -8)
+color = Color(0, 0.501961, 1, 1)
+polygon = PackedVector2Array(-56, 8, -80, 48, -64, 104, -24, 136, 16, 104, 32, 48, 8, 8)
+
+[node name="Label" type="Label" parent="Polygon2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_0eu54")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 384.0
+offset_right = 504.0
+offset_bottom = 448.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_5dh0y")
+text = "カード名"
+label_settings = SubResource("LabelSettings_bynux")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 448.0
+offset_right = 480.0
+offset_bottom = 688.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_1nkry")
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(132, 596)
+color = Color(0.815686, 0, 0, 1)
+polygon = PackedVector2Array(-96, 72, -112, 80, -120, 88, -128, 104, -128, 136, -120, 152, -112, 160, -96, 168, -64, 168, -48, 160, -40, 152, -32, 136, -32, 104, -40, 88, -48, 80, -64, 72)
+
+[node name="Label" type="Label" parent="Polygon2D2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = 52.0
+offset_right = -48.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_0eu54")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+position = Vector2(540, 596)
+color = Color(0, 0.627451, 0, 1)
+polygon = PackedVector2Array(-96, 72, -112, 80, -120, 88, -128, 104, -128, 136, -120, 152, -112, 160, -96, 168, -64, 168, -48, 160, -40, 152, -32, 136, -32, 104, -40, 88, -48, 80, -64, 72)
+
+[node name="Label" type="Label" parent="Polygon2D3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = 52.0
+offset_right = -48.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_0eu54")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 696.0
+offset_right = 336.0
+offset_bottom = 744.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_miip6")
+text = "系統"
+label_settings = SubResource("LabelSettings_sbvvc")
+horizontal_alignment = 1
+vertical_alignment = 1

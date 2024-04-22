@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp6no6f71y2in"]
+
+[ext_resource type="Script" path="res://client/test.gd" id="1_ox1dd"]
+[ext_resource type="PackedScene" uid="uid://c2a50mos84go" path="res://client/match_scene.tscn" id="2_1k2rq"]
+
+[node name="Test" type="Node"]
+script = ExtResource("1_ox1dd")
+
+[node name="MatchScene" parent="." instance=ExtResource("2_1k2rq")]
+
+[node name="Button" type="Button" parent="."]
+offset_right = 192.0
+offset_bottom = 64.0
+text = "テスト"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

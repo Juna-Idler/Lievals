@@ -3,12 +3,14 @@
 [ext_resource type="Script" path="res://client/card3d.gd" id="1_l2efo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_odedr"]
+shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_htspw"]
 size = Vector2(0.8, 1.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0p87"]
-albedo_color = Color(1, 0, 0, 1)
+shading_mode = 0
+albedo_color = Color(0, 0, 0.501961, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_toij1"]
 material = SubResource("StandardMaterial3D_y0p87")

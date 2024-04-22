@@ -4,7 +4,6 @@ class_name Card3D
 
 
 signal input_event(card : Card3D,camera : Camera3D, event : InputEvent, position : Vector3)
-signal clicked(card : Card3D)
 
 signal mouse_entered(card : Card3D)
 signal mouse_exited(card : Card3D)
@@ -13,6 +12,19 @@ signal mouse_exited(card : Card3D)
 
 @onready var front : MeshInstance3D = $Front
 @onready var back : MeshInstance3D = $Back
+
+
+@export var deck_card_id : int
+@export var base_card_id : int
+@export var cost : int
+@export var attack : int
+@export var hp : int
+@export var extra : Dictionary
+
+@export var playable : bool
+@export var choice_type : ServerInterface.Choice
+@export var target : Array
+
 
 var _tween : Tween = null
 
@@ -27,6 +39,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	pass
+
+func initialize():
 	pass
 
 
