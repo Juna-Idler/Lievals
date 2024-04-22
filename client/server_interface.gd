@@ -5,22 +5,30 @@ class_name ServerInterface
 class MatichingData:
 	var player_name : String
 	var rival_name : String
-	pass
+
 
 class FirstData:
 	var cards : Array[int]
-	pass
 
+
+class SecondData:
+	var cards : Array[int]
+	var wait : bool
+	
 
 
 func get_matching_data() -> MatichingData:
 	return null
 
-func send_ready_async() -> FirstData:
+func send_ready_match_async() -> FirstData:
 	@warning_ignore("redundant_await")
 	return await null
 
-func send_mulligan_async(_index_list : Array[int]) -> Result:
+func send_mulligan_async(_index_list : Array[int]) -> SecondData:
+	@warning_ignore("redundant_await")
+	return await null
+
+func send_ready_turn_async() -> Result:
 	@warning_ignore("redundant_await")
 	return await null
 

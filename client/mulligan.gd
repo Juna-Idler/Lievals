@@ -76,6 +76,10 @@ func wait_async() -> Array[int]:
 		tween.set_parallel()
 		for i in result:
 			tween.tween_property(cards[i],"position",Vector3(-4,-3,0),0.5)
+		tween.set_parallel(false)
+		for i in result:
+			tween.tween_property(cards[i],"rotation_degrees",Vector3(0,180,0),0.0)
+		
 	return result
 
 func end_async():
@@ -87,6 +91,12 @@ func end_async():
 	for i in cards.size():
 		var target_pos := Vector3(left + 0.9 * i,0,0)
 		tween.tween_property(cards[i],"position",target_pos,0.5)
+	tween.set_parallel(false)
+	tween.tween_interval(0.2)
+	tween.tween_interval(0.0)
+	tween.set_parallel(true)
+	for i in cards.size():
+		tween.tween_property(cards[i],"rotation",Vector3(0,0,0),0.5)
 	await tween.finished
 	tween = create_tween()
 	tween.set_parallel()

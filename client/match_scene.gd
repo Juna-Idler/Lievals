@@ -28,7 +28,7 @@ func _ready():
 func start_async(server_interface : ServerInterface):
 	server = server_interface
 #	var mdata := server.get_matching_data()
-#	var fdata := await server.send_ready_async()
+#	var data1 := await server.send_ready_match_async()
 #	if not fdata:
 #		return
 	hand.hide()
@@ -41,11 +41,14 @@ func start_async(server_interface : ServerInterface):
 	await mulligan.start_async(true,cards,0.5)
 	
 	var list := await mulligan.wait_async()
-#	var result := await server.send_mulligan_async(list)
+#	var data2 := await server.send_mulligan_async(list)
 	await mulligan.end_async()
 	hand.show()
 	hand.set_cards(cards,0.5)
 	mulligan.queue_free()
+#	var result := await server.send_ready_turn_async()
+
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
