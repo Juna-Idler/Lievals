@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://coen7ewbs1grh"]
+
+[ext_resource type="Texture2D" uid="uid://cexnud1vyxdbm" path="res://card_image/001.png" id="1_fs1j8"]
+[ext_resource type="PackedScene" uid="uid://btaiq2ujstip6" path="res://client/stat_mark.tscn" id="2_dapsg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flkp2"]
+shading_mode = 0
+albedo_texture = ExtResource("1_fs1j8")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar_sharpness = 1.46409
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8xvjy"]
+height = 0.001
+radial_segments = 9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jll1w"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_s6hu5"]
+inner_radius = 0.45
+outer_radius = 0.5
+rings = 9
+ring_segments = 8
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lr4sr"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_762o1"]
+viewport_path = NodePath("SubViewport2")
+
+[node name="Unit" type="Node3D"]
+
+[node name="Image" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_flkp2")
+mesh = SubResource("CylinderMesh_8xvjy")
+
+[node name="Frame" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_jll1w")
+mesh = SubResource("TorusMesh_s6hu5")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(104, 104)
+
+[node name="Control" parent="SubViewport" instance=ExtResource("2_dapsg")]
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(104, 104)
+
+[node name="Control" parent="SubViewport2" instance=ExtResource("2_dapsg")]
+color = Color(0, 0.627451, 0, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.2, 0.5)
+pixel_size = 0.003
+billboard = 1
+texture = SubResource("ViewportTexture_lr4sr")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.2, 0.5)
+pixel_size = 0.003
+billboard = 1
+texture = SubResource("ViewportTexture_762o1")

@@ -1,4 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://2q0jumnrxatb"]
+[gd_scene load_steps=11 format=3 uid="uid://2q0jumnrxatb"]
+
+[ext_resource type="Script" path="res://client/card_face_unit.gd" id="1_fe1au"]
+[ext_resource type="PackedScene" uid="uid://btaiq2ujstip6" path="res://client/stat_mark.tscn" id="1_payjs"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_02e3w"]
 
@@ -11,7 +14,7 @@ outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dh0y"]
-bg_color = Color(0.658824, 0.658824, 0, 1)
+bg_color = Color(0.686275, 0.686275, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bynux"]
 font_size = 40
@@ -22,22 +25,19 @@ outline_color = Color(0, 0, 0, 1)
 bg_color = Color(0.25098, 0.25098, 0.25098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_miip6"]
-bg_color = Color(0.6, 0.6, 0.627451, 1)
+bg_color = Color(0.341176, 0.313726, 0.47451, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_sbvvc"]
 font_size = 28
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Control" type="Control"]
+[node name="UnitCardFace" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -640.0
-offset_bottom = 120.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 768.0
+script = ExtResource("1_fe1au")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -50,7 +50,7 @@ offset_right = -16.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 0, 1)
+color = Color(0.541176, 0.541176, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -63,20 +63,20 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(80, -8)
+position = Vector2(48, 52)
 color = Color(0, 0.501961, 1, 1)
-polygon = PackedVector2Array(-56, 8, -80, 48, -64, 104, -24, 136, 16, 104, 32, 48, 8, 8)
+polygon = PackedVector2Array(-24, -52, -48, -28, -40, 36, 0, 68, 40, 36, 48, -28, 24, -52)
 
-[node name="Label" type="Label" parent="Polygon2D"]
+[node name="CostLabel" type="Label" parent="Polygon2D"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 124.0
+offset_left = -32.0
+offset_top = -66.0
+offset_right = 32.0
+offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "0"
@@ -84,7 +84,7 @@ label_settings = SubResource("LabelSettings_0eu54")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="CardNameLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 384.0
@@ -96,7 +96,7 @@ label_settings = SubResource("LabelSettings_bynux")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="CardTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 448.0
@@ -104,51 +104,20 @@ offset_right = 480.0
 offset_bottom = 688.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_1nkry")
 
-[node name="Polygon2D2" type="Polygon2D" parent="."]
-position = Vector2(132, 596)
+[node name="AttackMark" parent="." instance=ExtResource("1_payjs")]
+offset_top = 664.0
+offset_bottom = 768.0
 color = Color(0.815686, 0, 0, 1)
-polygon = PackedVector2Array(-96, 72, -112, 80, -120, 88, -128, 104, -128, 136, -120, 152, -112, 160, -96, 168, -64, 168, -48, 160, -40, 152, -32, 136, -32, 104, -40, 88, -48, 80, -64, 72)
 
-[node name="Label" type="Label" parent="Polygon2D2"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -112.0
-offset_top = 52.0
-offset_right = -48.0
-offset_bottom = 184.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "0"
-label_settings = SubResource("LabelSettings_0eu54")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Polygon2D3" type="Polygon2D" parent="."]
-position = Vector2(540, 596)
+[node name="HpMark" parent="." instance=ExtResource("1_payjs")]
+offset_left = 408.0
+offset_top = 664.0
+offset_right = 512.0
+offset_bottom = 768.0
 color = Color(0, 0.627451, 0, 1)
-polygon = PackedVector2Array(-96, 72, -112, 80, -120, 88, -128, 104, -128, 136, -120, 152, -112, 160, -96, 168, -64, 168, -48, 160, -40, 152, -32, 136, -32, 104, -40, 88, -48, 80, -64, 72)
+stat = 1
 
-[node name="Label" type="Label" parent="Polygon2D3"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -112.0
-offset_top = 52.0
-offset_right = -48.0
-offset_bottom = 184.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "0"
-label_settings = SubResource("LabelSettings_0eu54")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="."]
+[node name="TraitsLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 176.0
 offset_top = 696.0

@@ -36,9 +36,9 @@ func start_async(first : bool,dealt_cards : Array[Card3D],duration : float):
 	cards = dealt_cards
 	exchanges.clear()
 	for c in cards:
+		c.reparent(self)
 		c.position = Vector3(-4,0,0)
 		c.rotation_degrees = Vector3(0,180,0)
-		add_child(c)
 		c.input_event.connect(on_card_input_event)
 		
 	tween = create_tween()

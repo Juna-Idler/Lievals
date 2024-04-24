@@ -2,6 +2,7 @@ extends Node3D
 
 class_name Card3D
 
+const CARD_FACE_UNIT = preload("res://client/card_face_unit.tscn")
 
 signal input_event(card : Card3D,camera : Camera3D, event : InputEvent, position : Vector3)
 
@@ -9,6 +10,7 @@ signal mouse_entered(card : Card3D)
 signal mouse_exited(card : Card3D)
 
 @onready var sub_viewport : SubViewport = $SubViewport
+var card_face = null
 
 @onready var front : MeshInstance3D = $Front
 @onready var back : MeshInstance3D = $Back
@@ -41,7 +43,21 @@ func _ready():
 func _process(_delta):
 	pass
 
-func initialize():
+func initialize(dc_id : int,bc_id : int):
+	deck_card_id = dc_id
+	base_card_id = bc_id
+	var data := CardData.get_card_data(bc_id)
+	
+	var card_face_unit : CardFaceUnit = CARD_FACE_UNIT.instantiate()
+	card_face = card_face_unit
+	sub_viewport.add_child(card_face)
+	var texture_path := "res://card_image/%03d.png" % base_card_id
+	
+	var texture = load(texture_path) if FileAccess.file_exists(texture_path) else null
+	card_face_unit.initialize(data.name,data.text,data.cost,data.attack,data.hp,data.strain,texture)
+	
+	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+	
 	pass
 
 

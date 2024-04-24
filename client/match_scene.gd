@@ -36,12 +36,17 @@ func start_async(server_interface : ServerInterface):
 	hud.add_child(mulligan)
 	var cards : Array[Card3D] = []
 	for i in 3:
-		cards.append(CARD_3D.instantiate())
+		var card : Card3D = CARD_3D.instantiate()
+		add_child(card)
+		card.initialize(i,randi_range(1,10))
+		cards.append(card)
 	
 	await mulligan.start_async(true,cards,0.5)
 	
 	var list := await mulligan.wait_async()
 #	var data2 := await server.send_mulligan_async(list)
+	for i in list:
+		cards[i].initialize(i,randi_range(1,10))
 	await mulligan.end_async()
 	hand.show()
 	hand.set_cards(cards,0.5)
