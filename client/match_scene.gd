@@ -22,6 +22,10 @@ func _ready():
 	hand.hand_card_input_event.connect(on_hand_card_input_event)
 	hand.hand_card_mouse_entered.connect(on_hand_card_mouse_entered)
 	hand.hand_card_mouse_exited.connect(on_hand_card_mouse_exited)
+	
+	for i in range(1,4):
+		var data := CardData.get_card_data(randi_range(1,10))
+		field.set_unit(i,data.id,data.attack,data.hp,data.hp)
 	field.set_attack()
 	pass # Replace with function body.
 

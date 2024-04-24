@@ -4,7 +4,7 @@ class_name FieldSquare
 
 @onready var mesh_instance_3d : MeshInstance3D= $MeshInstance3D
 
-var unit : bool = true
+var unit : Unit3D = null
 
 var chooseable : bool = false:
 	set(v):

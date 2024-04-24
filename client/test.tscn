@@ -9,8 +9,10 @@ script = ExtResource("1_ox1dd")
 [node name="MatchScene" parent="." instance=ExtResource("2_1k2rq")]
 
 [node name="Button" type="Button" parent="."]
-offset_right = 192.0
-offset_bottom = 64.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 193.0
+offset_bottom = 63.0
 text = "テスト"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

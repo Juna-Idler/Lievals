@@ -2,6 +2,7 @@ extends Node3D
 
 class_name Field
 
+const UNIT3D = preload("res://client/unit.tscn")
 
 @onready var own_leader_square : FieldSquare = $Own/Square0
 
@@ -38,15 +39,24 @@ func _ready():
 	own_leader_square.mouse_exited.connect(_on_square_mouse_exited.bind(own_leader_square))
 	rival_leader_square.mouse_exited.connect(_on_square_mouse_exited.bind(rival_leader_square))
 
-	for i in 6:
-		own_unit_squares[i].unit = bool(randi() & 1)
-		rival_unit_squares[i].unit = bool(randi() & 1)
 
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	pass
+
+func set_unit(index : int,bc_id : int,attack : int,max_hp : int,hp : int):
+	var unit : Unit3D = UNIT3D.instantiate()
+	if index < 7:
+		own_unit_squares[index - 1].add_child(unit)
+		own_unit_squares[index - 1].unit = unit
+		unit.initialize(bc_id,attack,max_hp,hp)
+	elif index < 14:
+		rival_unit_squares[index - 8].add_child(unit)
+		rival_unit_squares[index - 8].unit = unit
+		unit.initialize(bc_id,attack,max_hp,hp)
 	pass
 
 func set_attack():

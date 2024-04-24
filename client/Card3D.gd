@@ -53,8 +53,11 @@ func initialize(dc_id : int,bc_id : int):
 	sub_viewport.add_child(card_face)
 	var texture_path := "res://card_image/%03d.png" % base_card_id
 	
-	var texture = load(texture_path) if FileAccess.file_exists(texture_path) else null
-	card_face_unit.initialize(data.name,data.text,data.cost,data.attack,data.hp,data.strain,texture)
+	var texture = load(texture_path) if FileAccess.file_exists(texture_path) else preload("res://icon.svg")
+	var card_text := data.text
+	card_text = card_text.replace("\\n","\n")
+	card_text = "[center]" + card_text + "[/center]"
+	card_face_unit.initialize(data.name,card_text,data.cost,data.attack,data.hp,data.strain,texture)
 	
 	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	

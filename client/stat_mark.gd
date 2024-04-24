@@ -2,6 +2,9 @@
 
 extends Control
 
+class_name StatMark
+
+
 @onready var polygon_2d = $Polygon2D
 @onready var label = $Label
 

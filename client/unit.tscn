@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://coen7ewbs1grh"]
+[gd_scene load_steps=10 format=3 uid="uid://coen7ewbs1grh"]
 
+[ext_resource type="Script" path="res://client/unit.gd" id="1_f4bpv"]
 [ext_resource type="Texture2D" uid="uid://cexnud1vyxdbm" path="res://card_image/001.png" id="1_fs1j8"]
 [ext_resource type="PackedScene" uid="uid://btaiq2ujstip6" path="res://client/stat_mark.tscn" id="2_dapsg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flkp2"]
+resource_local_to_scene = true
 shading_mode = 0
 albedo_texture = ExtResource("1_fs1j8")
 uv1_scale = Vector3(2, 2, 2)
@@ -28,6 +30,7 @@ viewport_path = NodePath("SubViewport")
 viewport_path = NodePath("SubViewport2")
 
 [node name="Unit" type="Node3D"]
+script = ExtResource("1_f4bpv")
 
 [node name="Image" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_flkp2")
@@ -41,24 +44,32 @@ mesh = SubResource("TorusMesh_s6hu5")
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 size = Vector2i(104, 104)
+render_target_update_mode = 1
 
-[node name="Control" parent="SubViewport" instance=ExtResource("2_dapsg")]
+[node name="Attack" parent="SubViewport" instance=ExtResource("2_dapsg")]
 
 [node name="SubViewport2" type="SubViewport" parent="."]
 transparent_bg = true
 size = Vector2i(104, 104)
+render_target_update_mode = 1
 
-[node name="Control" parent="SubViewport2" instance=ExtResource("2_dapsg")]
+[node name="Hp" parent="SubViewport2" instance=ExtResource("2_dapsg")]
 color = Color(0, 0.627451, 0, 1)
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="AttackSprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.2, 0.5)
 pixel_size = 0.003
 billboard = 1
 texture = SubResource("ViewportTexture_lr4sr")
 
-[node name="Sprite3D2" type="Sprite3D" parent="."]
+[node name="HpSprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.2, 0.5)
 pixel_size = 0.003
 billboard = 1
 texture = SubResource("ViewportTexture_762o1")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+billboard = 1
+double_sided = false
+text = "名前"
