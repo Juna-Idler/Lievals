@@ -70,23 +70,19 @@ enum ResultType{
 class Result:
 	var result_type : ResultType
 	var log_list : Array[Log]
-	var board
+	var board : Board
 	var turn_count : int
 
 class Log:
 	pass
 
-class NonPlayableBoard:
-	var rival : RivalPlayer
-	var player : NonplayablePlayer
-
-class PlayableBoard:
-	var rival : RivalPlayer
-	var player : PlayablePlayer
+class Board:
+	var rival : Rival
+	var player : Player
+	var choose : Choose
 
 
-
-class RivalPlayer:
+class Rival:
 	var max_mp : int
 	var mp : int
 	var tension : int
@@ -95,7 +91,7 @@ class RivalPlayer:
 	var weapon
 	var tension_skill : int
 
-class NonplayablePlayer:
+class Player:
 	var max_mp : int
 	var mp : int
 	var tension : int
@@ -103,18 +99,13 @@ class NonplayablePlayer:
 	var field : Array[Square]
 	var weapon
 	var tension_skill : int
-
-class PlayablePlayer:
-	var max_mp : int
-	var mp : int
-	var tension : int
-	var hand : Array[PlayableCard]
-	var field : Array[PlayableSquare]
-	var weapon
-	var tension_skill : int
 	
 	var normal_attack_target : Array
 	var all_attack_target : Array
+	
+
+class Choose:
+	pass
 
 class Card:
 	var deck_card_id : int
@@ -123,6 +114,10 @@ class Card:
 	var attack : int
 	var hp : int
 	var extra : Dictionary
+	
+	var playable : bool
+	var choice_type : Choice
+	var target : Array
 
 class Unit:
 	var base_card_id : int
@@ -135,7 +130,9 @@ class Unit:
 
 class Square:
 	var unit : Unit
-	
+	var attackable : bool
+	var sniping : bool
+	var summonable : bool
 
 enum Choice {
 	NO_CHOICE,
@@ -153,14 +150,4 @@ enum Choice {
 	ENEMY_VERTICAL,
 }
 
-class PlayableCard extends Card:
-	var playable : bool
-	var choice_type : Choice
-	var target : Array
-
-
-class PlayableSquare extends Square:
-	var attackable : bool
-	var sniping : bool
-	var summonable : bool
 

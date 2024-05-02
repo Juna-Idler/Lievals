@@ -55,8 +55,39 @@ func set_cards(cards : Array[Card3D],duration : float):
 	await tween.finished
 	set_all_ray_pickable(true)
 
+func reset_cards(cards : Array[Card3D]):
+	hands = cards
+	set_all_ray_pickable(false)
+	hand_positions.resize(hands.size())
+	if hands.size() < 5:
+		for i in hands.size():
+			var p := Vector3(-2 + i,0,0)
+			var card := hands[i]
+			card.reparent(self)
+			p.z = (i + 1) * 0.01
+			card.position = p
+			card.scale = Vector3.ONE
+			hand_positions[i] = p
+	else:
+		for i in hands.size():
+			var rate := float(i) / (hands.size()-1)
+			var p := path_3d.curve.samplef(lerpf(0,path_3d.curve.point_count - 1,rate))
+			var card := hands[i]
+			card.reparent(self)
+			p.z = (i + 1) * 0.01
+			card.position = p
+			card.rotation_degrees.z = lerpf(15,-15,rate)
+			card.scale = Vector3.ONE
+			hand_positions[i] = p
+
+	for c in hands:
+		c.input_event.connect(on_hand_card_input_event)
+		c.mouse_entered.connect(on_hand_card_mouse_entered)
+		c.mouse_exited.connect(on_hand_card_mouse_exited)
 	
-	pass # Replace with function body.
+	set_all_ray_pickable(true)
+	
+
 func on_hand_card_input_event(card : Card3D,camera : Camera3D, event : InputEvent, hit_position : Vector3):
 	hand_card_input_event.emit(card,camera,event,hit_position)
 	

@@ -48,6 +48,9 @@ func initialize(dc_id : int,bc_id : int):
 	base_card_id = bc_id
 	var data := CardData.get_card_data(bc_id)
 	
+	if card_face:
+		sub_viewport.remove_child(card_face)
+		card_face.queue_free()
 	var card_face_unit : CardFaceUnit = CARD_FACE_UNIT.instantiate()
 	card_face = card_face_unit
 	sub_viewport.add_child(card_face)
@@ -62,6 +65,28 @@ func initialize(dc_id : int,bc_id : int):
 	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	
 	pass
+
+func initialize_card(card : ServerInterface.Card):
+	deck_card_id = card.deck_card_id
+	base_card_id = card.base_card_id
+	var data := CardData.get_card_data(base_card_id)
+	
+	if card_face:
+		sub_viewport.remove_child(card_face)
+		card_face.queue_free()
+	var card_face_unit : CardFaceUnit = CARD_FACE_UNIT.instantiate()
+	card_face = card_face_unit
+	sub_viewport.add_child(card_face)
+	var texture_path := "res://card_image/%03d.png" % base_card_id
+	
+	var texture = load(texture_path) if FileAccess.file_exists(texture_path) else preload("res://icon.svg")
+	var card_text := data.text
+	card_text = card_text.replace("\\n","\n")
+	card_text = "[center]" + card_text + "[/center]"
+	card_face_unit.initialize(data.name,card_text,card.cost,card.attack,card.hp,data.strain,texture)
+	
+	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+	
 
 
 func set_ray_pickable(enable : bool):

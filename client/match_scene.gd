@@ -10,6 +10,8 @@ const CARD_3D = preload("res://client/card3d.tscn")
 
 @onready var camera_3d : Camera3D = %Camera3D
 
+@onready var card_holder : Node3D = %CardHolder
+
 var drag_plane : Plane = Plane(Vector3(0,1,0),0.5)
 
 var server : ServerInterface
@@ -22,10 +24,37 @@ func _ready():
 	hand.hand_card_input_event.connect(on_hand_card_input_event)
 	hand.hand_card_mouse_entered.connect(on_hand_card_mouse_entered)
 	hand.hand_card_mouse_exited.connect(on_hand_card_mouse_exited)
-	
-	for i in range(1,4):
+
+
+	var result := ServerInterface.Result.new()
+	result.board = ServerInterface.Board.new()
+	result.board.player = ServerInterface.Player.new()
+	result.board.player.hand = []
+	for i in 5:
+		var c := ServerInterface.Card.new()
 		var data := CardData.get_card_data(randi_range(1,10))
-		field.set_unit(i,data.id,data.attack,data.hp,data.hp)
+		c.deck_card_id = i
+		c.base_card_id = data.id
+		c.attack = data.attack
+		c.cost = data.cost
+		c.hp = data.hp
+		result.board.player.hand.append(c)
+	
+	result.board.player.field = []
+	for i in 7:
+		var s := ServerInterface.Square.new()
+		s.unit = ServerInterface.Unit.new()
+		var data := CardData.get_card_data(randi_range(1,10))
+		s.unit.base_card_id = data.id
+		s.unit.attack = data.attack
+		s.unit.max_hp = data.hp
+		s.unit.hp = data.hp
+		result.board.player.field.append(s)
+	reset_board(result)
+	
+	#for i in range(1,4):
+		#var data := CardData.get_card_data(randi_range(1,10))
+		#field.set_unit(i,data.id,data.attack,data.hp,data.hp)
 	field.set_attack()
 	pass # Replace with function body.
 
@@ -41,7 +70,7 @@ func start_async(server_interface : ServerInterface):
 	var cards : Array[Card3D] = []
 	for i in 3:
 		var card : Card3D = CARD_3D.instantiate()
-		add_child(card)
+		card_holder.add_child(card)
 		card.initialize(i,randi_range(1,10))
 		cards.append(card)
 	
@@ -56,6 +85,33 @@ func start_async(server_interface : ServerInterface):
 	hand.set_cards(cards,0.5)
 	mulligan.queue_free()
 #	var result := await server.send_ready_turn_async()
+
+
+func reset_board(result : ServerInterface.Result):
+	
+	result.result_type
+	result.board
+	
+	
+	while card_holder.get_child_count() > 0:
+		card_holder.remove_child(card_holder.get_child(0))
+
+	var cards : Array[Card3D] = []
+	for h in result.board.player.hand:
+		var card : Card3D = CARD_3D.instantiate()
+		card_holder.add_child(card)
+		card.initialize_card(h)
+		cards.append(card)
+
+	hand.reset_cards(cards)
+	
+	for i in range(1,7):
+		field.delete_unit(i)
+		if result.board.player.field[i].unit:
+			var u := result.board.player.field[i].unit
+			field.set_unit(i,u.base_card_id,u.attack,u.max_hp,u.hp)
+
+
 
 
 
@@ -78,11 +134,11 @@ func _physics_process(_delta):
 			else:
 				_drag_card.front.global_position = pos
 		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-				hand.set_all_ray_pickable(true)
-				_drag_card.restore_face()
-				_drag_card = null
-				field.set_choice(Mechanics.Choice.NO_CHOICE)
-				field.set_attack()
+			hand.set_all_ray_pickable(true)
+			_drag_card.restore_face()
+			_drag_card = null
+			field.set_choice(Mechanics.Choice.NO_CHOICE)
+			field.set_attack()
 				
 
 

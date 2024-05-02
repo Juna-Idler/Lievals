@@ -43,6 +43,9 @@ unique_name_in_owner = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.65, -1.1, 0)
 hands = [null, null, null, null, null, null, null, null, null, null]
 
+[node name="CardHolder" type="Node3D" parent="Node3D/Camera3D/HUD"]
+unique_name_in_owner = true
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D/Camera3D/HUD"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39, -0.94, 0)
 mesh = SubResource("QuadMesh_ijhj6")

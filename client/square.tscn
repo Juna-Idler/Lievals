@@ -20,3 +20,5 @@ shape = SubResource("BoxShape3D_etbh6")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_c3f7s")
 mesh = SubResource("PlaneMesh_jx12i")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
