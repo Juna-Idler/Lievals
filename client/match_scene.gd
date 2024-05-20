@@ -29,6 +29,7 @@ func _ready():
 	var result := ServerInterface.Result.new()
 	result.board = ServerInterface.Board.new()
 	result.board.player = ServerInterface.Player.new()
+	result.board.rival = ServerInterface.Rival.new()
 	result.board.player.hand = []
 	for i in 5:
 		var c := ServerInterface.Card.new()
@@ -41,16 +42,29 @@ func _ready():
 		result.board.player.hand.append(c)
 	
 	result.board.player.field = []
+	result.board.rival.field = []
 	for i in 7:
 		var s := ServerInterface.Square.new()
-		s.unit = ServerInterface.Unit.new()
-		var data := CardData.get_card_data(randi_range(1,10))
-		s.unit.base_card_id = data.id
-		s.unit.attack = data.attack
-		s.unit.max_hp = data.hp
-		s.unit.hp = data.hp
+		if randi() & 1:
+			s.unit = ServerInterface.Unit.new()
+			var data := CardData.get_card_data(randi_range(1,10))
+			s.unit.base_card_id = data.id
+			s.unit.attack = data.attack
+			s.unit.max_hp = data.hp
+			s.unit.hp = data.hp
 		result.board.player.field.append(s)
-	reset_board(result)
+		
+		s = ServerInterface.Square.new()
+		if randi() & 1:
+			s.unit = ServerInterface.Unit.new()
+			var data := CardData.get_card_data(randi_range(1,10))
+			s.unit.base_card_id = data.id
+			s.unit.attack = data.attack
+			s.unit.max_hp = data.hp
+			s.unit.hp = data.hp
+		result.board.rival.field.append(s)
+	
+	reset_board(result.board)
 	
 	#for i in range(1,4):
 		#var data := CardData.get_card_data(randi_range(1,10))
@@ -86,18 +100,35 @@ func start_async(server_interface : ServerInterface):
 	mulligan.queue_free()
 #	var result := await server.send_ready_turn_async()
 
+var _performing_logs : Array[ServerInterface.Log] = []
+var _latest_board : ServerInterface.Board
 
-func reset_board(result : ServerInterface.Result):
+func perform_result_async(result : ServerInterface.Result):
+	_latest_board = result.board
+	if not _performing_logs.is_empty():
+		_performing_logs.append_array(result.log_list)
+		return
 	
-	result.result_type
-	result.board
+	_performing_logs.append_array(result.log_list)
+	while not _performing_logs.is_empty():
+		var log : ServerInterface.Log = _performing_logs.pop_front()
+#		await perform_log(log)
+		pass
 	
+	reset_board(_latest_board)
+	
+
+
+func reset_board(board : ServerInterface.Board):
+	
+	if hand.hands.size() == board.player.hand.size():
+		return
 	
 	while card_holder.get_child_count() > 0:
 		card_holder.remove_child(card_holder.get_child(0))
 
 	var cards : Array[Card3D] = []
-	for h in result.board.player.hand:
+	for h in board.player.hand:
 		var card : Card3D = CARD_3D.instantiate()
 		card_holder.add_child(card)
 		card.initialize_card(h)
@@ -106,14 +137,15 @@ func reset_board(result : ServerInterface.Result):
 	hand.reset_cards(cards)
 	
 	for i in range(1,7):
-		field.delete_unit(i)
-		if result.board.player.field[i].unit:
-			var u := result.board.player.field[i].unit
-			field.set_unit(i,u.base_card_id,u.attack,u.max_hp,u.hp)
-
-
-
-
+		field.delete_own_unit(i)
+		if board.player.field[i].unit:
+			var u := board.player.field[i].unit
+			field.set_own_unit(i,u.base_card_id,u.attack,u.max_hp,u.hp)
+		field.delete_rival_unit(i)
+		if board.rival.field[i].unit:
+			var u := board.rival.field[i].unit
+			field.set_rival_unit(i,u.base_card_id,u.attack,u.max_hp,u.hp)
+		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

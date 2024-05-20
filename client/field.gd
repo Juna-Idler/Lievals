@@ -52,21 +52,21 @@ func _ready():
 func _process(_delta):
 	pass
 
-func set_unit(index : int,bc_id : int,attack : int,max_hp : int,hp : int):
+func set_own_unit(index : int,bc_id : int,attack : int,max_hp : int,hp : int):
 	var unit : Unit3D = UNIT3D.instantiate()
-	if index < 7:
-		own_unit_squares[index - 1].set_unit(unit)
-		unit.initialize(bc_id,attack,max_hp,hp)
-	elif index < 14:
-		rival_unit_squares[index - 8].set_unit(unit)
-		unit.initialize(bc_id,attack,max_hp,hp)
-	pass
+	own_unit_squares[index - 1].set_unit(unit)
+	unit.initialize(bc_id,attack,max_hp,hp)
 
-func delete_unit(index : int):
-	if index < 7:
-		own_unit_squares[index - 1].set_unit(null)
-	elif index < 14:
-		rival_unit_squares[index - 8].set_unit(null)
+func set_rival_unit(index : int,bc_id : int,attack : int,max_hp : int,hp : int):
+	var unit : Unit3D = UNIT3D.instantiate()
+	rival_unit_squares[index - 1].set_unit(unit)
+	unit.initialize(bc_id,attack,max_hp,hp)
+
+func delete_own_unit(index : int):
+	own_unit_squares[index - 1].set_unit(null)
+
+func delete_rival_unit(index : int):
+	rival_unit_squares[index - 1].set_unit(null)
 
 
 func set_attack():

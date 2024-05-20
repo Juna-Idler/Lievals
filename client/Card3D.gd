@@ -88,6 +88,14 @@ func initialize_card(card : ServerInterface.Card):
 	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	
 
+func compare(card : ServerInterface.Card) -> bool:
+	return (deck_card_id == card.deck_card_id and 
+		base_card_id == card.base_card_id and 
+		cost == card.cost and 
+		attack == card.attack and 
+		hp == card.hp and 
+		extra == card.extra)
+
 
 func set_ray_pickable(enable : bool):
 	$Area3D.input_ray_pickable = enable

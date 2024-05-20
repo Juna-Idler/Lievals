@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxk6mld8uap3a"]
+
+[ext_resource type="Texture2D" uid="uid://qpveetrvb1dm" path="res://icon.svg" id="1_xcaa2"]
+
+[node name="TensionView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeaderImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 176.0
+offset_bottom = 160.0
+texture = ExtResource("1_xcaa2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Charge3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 44.0
+offset_right = 56.0
+offset_bottom = 88.0
+color = Color(0.25098, 0, 0.627451, 1)
+
+[node name="Charge2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 92.0
+offset_right = 52.0
+offset_bottom = 132.0
+color = Color(0.25098, 0, 0.627451, 1)
+
+[node name="Charge1" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 136.0
+offset_right = 128.0
+offset_bottom = 160.0
+color = Color(0.25098, 0, 0.627451, 1)
+
+[node name="SkillImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 64.0
+offset_bottom = 60.0
+texture = ExtResource("1_xcaa2")
+expand_mode = 1
+stretch_mode = 5

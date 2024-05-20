@@ -3,13 +3,11 @@
 [ext_resource type="Script" path="res://client/match_scene.gd" id="1_kjtxy"]
 [ext_resource type="PackedScene" uid="uid://djgkn8eph0ns8" path="res://client/field.tscn" id="2_jgw8h"]
 [ext_resource type="PackedScene" uid="uid://ds1atr8bykdwr" path="res://client/hand.tscn" id="2_tixvo"]
+[ext_resource type="PackedScene" uid="uid://k6tnh6vq6nne" path="res://client/leader_panel.tscn" id="4_4t3vc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g1j7q"]
 radius = 0.4
 height = 1.5
-
-[sub_resource type="QuadMesh" id="QuadMesh_ijhj6"]
-size = Vector2(1.5, 0.5)
 
 [sub_resource type="QuadMesh" id="QuadMesh_dnfj5"]
 size = Vector2(2.3, 0.3)
@@ -46,15 +44,12 @@ hands = [null, null, null, null, null, null, null, null, null, null]
 [node name="CardHolder" type="Node3D" parent="Node3D/Camera3D/HUD"]
 unique_name_in_owner = true
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D/Camera3D/HUD"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39, -0.94, 0)
-mesh = SubResource("QuadMesh_ijhj6")
-skeleton = NodePath("../..")
+[node name="LeaderPanel" parent="Node3D/Camera3D/HUD" instance=ExtResource("4_4t3vc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, -1, 0)
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Node3D/Camera3D/HUD"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39, 0.95, 0)
-mesh = SubResource("QuadMesh_ijhj6")
-skeleton = NodePath("../..")
+[node name="RivalLeaderPanel" parent="Node3D/Camera3D/HUD" instance=ExtResource("4_4t3vc")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.1, 0.8, 0)
+opponent_layout = true
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Node3D/Camera3D/HUD"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 1, 0)

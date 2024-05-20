@@ -1,0 +1,215 @@
+[gd_scene load_steps=11 format=3 uid="uid://cl3rs5dlemofb"]
+
+[ext_resource type="Script" path="res://client/count_panel.gd" id="1_b2uok"]
+[ext_resource type="Texture2D" uid="uid://qpveetrvb1dm" path="res://icon.svg" id="2_am7jo"]
+
+[sub_resource type="Gradient" id="Gradient_x5b0m"]
+offsets = PackedFloat32Array(0, 0.0458333, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.627451, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gaqli"]
+gradient = SubResource("Gradient_x5b0m")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijrla"]
+resource_local_to_scene = true
+bg_color = Color(0, 1, 0.00392157, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_5abpo"]
+font_size = 56
+font_color = Color(0, 1, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1wgg"]
+font_size = 32
+font_color = Color(0, 1, 0, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kj0yr"]
+font_size = 24
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kd3ob"]
+font_size = 32
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0007m"]
+font_size = 36
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="CountPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 324.0
+offset_bottom = 108.0
+script = ExtResource("1_b2uok")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 324.0
+offset_bottom = -4.0
+grow_vertical = 0
+texture = SubResource("GradientTexture1D_gaqli")
+
+[node name="HpBar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_right = 308.0
+offset_bottom = 64.0
+
+[node name="ProgressBar" type="ProgressBar" parent="HpBar"]
+layout_mode = 0
+offset_top = 44.0
+offset_right = 292.0
+offset_bottom = 60.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_ijrla")
+max_value = 25.0
+step = 1.0
+value = 25.0
+show_percentage = false
+
+[node name="HpCount" type="Control" parent="HpBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_bottom = 80.0
+grow_horizontal = 0
+
+[node name="Hp" type="Label" parent="HpBar/HpCount"]
+layout_mode = 1
+offset_top = -17.0
+offset_right = 116.0
+offset_bottom = 63.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "25"
+label_settings = SubResource("LabelSettings_5abpo")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Label" type="Label" parent="HpBar/HpCount/Hp"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -116.0
+offset_top = -56.0
+offset_right = -68.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "HP"
+label_settings = SubResource("LabelSettings_f1wgg")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 64.0
+offset_right = 308.0
+offset_bottom = 108.0
+theme_override_constants/separation = 8
+
+[node name="MpCount" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(176, 44)
+layout_mode = 2
+
+[node name="TextureMpIcon" type="TextureRect" parent="HBoxContainer/MpCount"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 32.0
+offset_bottom = 40.0
+texture = ExtResource("2_am7jo")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/MpCount"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 44.0
+text = "MP"
+label_settings = SubResource("LabelSettings_kj0yr")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Mp" type="Label" parent="HBoxContainer/MpCount"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = -4.0
+offset_right = 112.0
+offset_bottom = 44.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_kd3ob")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LabelSlash" type="Label" parent="HBoxContainer/MpCount"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = -4.0
+offset_right = 144.0
+offset_bottom = 44.0
+text = "/"
+label_settings = SubResource("LabelSettings_kd3ob")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MaxMp" type="Label" parent="HBoxContainer/MpCount"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = -4.0
+offset_right = 176.0
+offset_bottom = 44.0
+text = "1"
+label_settings = SubResource("LabelSettings_kd3ob")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="DeckCount" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(104, 44)
+layout_mode = 2
+
+[node name="Deck" type="Label" parent="HBoxContainer/DeckCount"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -56.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 44.0
+grow_horizontal = 0
+text = "26"
+label_settings = SubResource("LabelSettings_0007m")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TextureDeckIcon" type="TextureRect" parent="HBoxContainer/DeckCount"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 40.0
+texture = ExtResource("2_am7jo")
+expand_mode = 1

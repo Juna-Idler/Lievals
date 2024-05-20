@@ -68,15 +68,15 @@ enum ResultType{
 }
 
 class Result:
-	var result_type : ResultType
 	var log_list : Array[Log]
 	var board : Board
-	var turn_count : int
 
 class Log:
 	pass
 
 class Board:
+	var result_type : ResultType
+	var turn_count : int
 	var rival : Rival
 	var player : Player
 	var choose : Choose

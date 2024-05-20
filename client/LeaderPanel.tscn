@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://kvm8t5nri6bw"]
+
+[ext_resource type="PackedScene" uid="uid://cxk6mld8uap3a" path="res://client/tension_view.tscn" id="1_nn7hf"]
+[ext_resource type="PackedScene" uid="uid://cl3rs5dlemofb" path="res://client/count_panel.tscn" id="2_sd3da"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TensionView" parent="." instance=ExtResource("1_nn7hf")]
+layout_mode = 1
+
+[node name="CountPanel" parent="." instance=ExtResource("2_sd3da")]
+offset_left = 180.0
+offset_top = 52.0
+offset_right = 532.0
+offset_bottom = 160.0
+hp_value = 8

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://k6tnh6vq6nne"]
+
+[ext_resource type="PackedScene" uid="uid://cl3rs5dlemofb" path="res://client/count_panel.tscn" id="1_gum0a"]
+[ext_resource type="Script" path="res://client/leader_panel.gd" id="1_om0we"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wmypv"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_su4aq"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_wmypv")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ijhj6"]
+size = Vector2(1.2, 0.4)
+
+[node name="LeaderPanel" type="Node3D"]
+script = ExtResource("1_om0we")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(324, 108)
+
+[node name="CountPanel" parent="SubViewport" instance=ExtResource("1_gum0a")]
+
+[node name="LeaderPanel" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_su4aq")
+mesh = SubResource("QuadMesh_ijhj6")
+skeleton = NodePath("../..")
