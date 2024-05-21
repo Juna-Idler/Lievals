@@ -1,21 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxk6mld8uap3a"]
+[gd_scene load_steps=3 format=3 uid="uid://cxk6mld8uap3a"]
 
+[ext_resource type="Script" path="res://client/tension_panel.gd" id="1_4u5yb"]
 [ext_resource type="Texture2D" uid="uid://qpveetrvb1dm" path="res://icon.svg" id="1_xcaa2"]
 
-[node name="TensionView" type="Control"]
+[node name="TensionPanel" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 192.0
+offset_bottom = 192.0
+script = ExtResource("1_4u5yb")
 
 [node name="LeaderImage" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 8.0
-offset_right = 176.0
-offset_bottom = 160.0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 192.0
+offset_bottom = 184.0
 texture = ExtResource("1_xcaa2")
 expand_mode = 1
 stretch_mode = 5
@@ -23,32 +23,33 @@ stretch_mode = 5
 [node name="Charge3" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 4.0
-offset_top = 44.0
+offset_top = 60.0
 offset_right = 56.0
-offset_bottom = 88.0
+offset_bottom = 108.0
 color = Color(0.25098, 0, 0.627451, 1)
 
 [node name="Charge2" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 92.0
+offset_top = 112.0
 offset_right = 52.0
-offset_bottom = 132.0
+offset_bottom = 156.0
 color = Color(0.25098, 0, 0.627451, 1)
 
 [node name="Charge1" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 136.0
+offset_top = 160.0
 offset_right = 128.0
-offset_bottom = 160.0
+offset_bottom = 188.0
 color = Color(0.25098, 0, 0.627451, 1)
 
 [node name="SkillImage" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 4.0
-offset_right = 64.0
-offset_bottom = 60.0
+offset_top = 4.0
+offset_right = 68.0
+offset_bottom = 68.0
 texture = ExtResource("1_xcaa2")
 expand_mode = 1
 stretch_mode = 5

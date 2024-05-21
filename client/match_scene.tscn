@@ -45,7 +45,7 @@ hands = [null, null, null, null, null, null, null, null, null, null]
 unique_name_in_owner = true
 
 [node name="LeaderPanel" parent="Node3D/Camera3D/HUD" instance=ExtResource("4_4t3vc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0)
 
 [node name="RivalLeaderPanel" parent="Node3D/Camera3D/HUD" instance=ExtResource("4_4t3vc")]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.1, 0.8, 0)
